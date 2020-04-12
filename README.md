@@ -1,4 +1,4 @@
-# Udacity Weather Journal
+# Udacity Natural Language Processing
 
 This repo is for Udacity's Nanodegree program for Front End Web Development. This natural language processing app is for the 3rd javascript section focusing on build tools.
 
