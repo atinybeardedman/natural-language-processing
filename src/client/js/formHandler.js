@@ -1,10 +1,11 @@
-function handleSubmit() {
+function handleSubmit(e) {
+    e.preventDefault();
     const resultsElement = document.getElementById('results');
     const alertElement = document.getElementById('alert');
     const inputElement = document.getElementById('url');
     const url = inputElement.value;
 
-    inputElement.classList.add('is-loading');
+    inputElement.parentElement.classList.add('is-loading');
     return getSummary(url)
         .then(res => {
             if(!res.ok){
@@ -17,12 +18,12 @@ function handleSubmit() {
 }
 
 function updateDOM(res, inputElement, resultsElement) {
-    inputElement.remove('is-loading');
+    inputElement.parentElement.classList.remove('is-loading');
     resultsElement.innerText = res.sentences.join(' ');
 }
 
 function getSummary(url){
-    return fetch('http://localhost:8080/summarize?url=' + url);
+    return fetch('http://localhost:8081/summarize?url=' + url);
 }
 
 function showError(alertElement){

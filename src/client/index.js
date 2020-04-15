@@ -6,5 +6,5 @@ import './styles/main.scss';
 export {
     handleSubmit,
     onBlur,
-    onLoad
+    onLoad,
 }

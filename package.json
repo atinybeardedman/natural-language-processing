@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test-server": "jest",
+    "test-server": "jest ./src/server",
     "test-client": "jest ./src/client",
     "start": "node src/server/index.js",
     "build-prod": "webpack --config webpack.prod.js",
@@ -15,6 +15,7 @@
   "description": "",
   "dependencies": {
     "aylien_textapi": "^0.7.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "webpack": "^4.35.3",
