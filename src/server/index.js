@@ -1,6 +1,4 @@
-var path = require('path')
 const express = require('express')
-const mockAPIResponse = require('./mockAPI.js')
 const aylien = require('aylien_textapi');
 const dotenv = require('dotenv');
 dotenv.config();
@@ -26,14 +24,15 @@ app.listen(8080, function () {
 })
 
 app.get('/summarize', function (req, res) {
-    // console.log(req);
     textapi.summarize({
         url: req.query.url,
     }, (err, summary) => {
         if(err === null){
             res.send(summary);
         } else {
-            console.log(err);
+            res.status(400).send({
+                message: "Whoops, that url couldn't be understood. Try a different one."
+            })
         }
     });
 })

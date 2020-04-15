@@ -29,6 +29,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
+            title: "Natural Language Processing"
         }),
         new MiniCssExtractPlugin({
             filename: '[name].css'

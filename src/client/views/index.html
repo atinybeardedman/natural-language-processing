@@ -1,38 +1,91 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Test</title>
-    </head>
+<html lang="en">
 
-    <body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= htmlWebpackPlugin.options.title %>
+    </title>
+</head>
 
-        <header>
-            <div class="">
-                Logo
+<body class="preload">
+    <main>
+        <section class="hero is-primary">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title">Natural Language Processing Demo</h1>
+                    <h2 class="subtitle">This demo uses the Aylien Text Analysis API to summarize the text of an article
+                        of your choice on the web.</h2>
+                    <div class="content">
+                        <p>This particular use of the API is only one example of the power this technology provides.
+                            This API will also perform the following types of analysis:</p>
+                        <ul>
+                            <li>Setiment Analysis</li>
+                            <li>Categoration and Classification</li>
+                            <li>Concept Extraction</li>
+                            <li>Hashtag Suggestion</li>
+                            <li>And more!</li>
+                        </ul>
+
+                    </div>
+                </div>
             </div>
-            <div class="">
-                navigation
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-two-thirds-desktop">
+                        <div class="card">
+                            <div class="card-content">
+                                <form>
+                                    <div class="field">
+                                        <label for="" class="label">Link To Article</label>
+                                        <div class="control">
+                                            <input class="input" id="url" type="text" name="input" value=""
+                                                onblur="Client.onBlur(this)" placeholder="www.example.com/article">
+                                            <p id="warning-text" class="help is-danger is-hidden">
+                                                Must be a valid url
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="control">
+                                        <button disabled class="button is-primary" id="submit"
+                                            onclick="return Client.handleSubmit(event)">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-        </header>
+        </section>
+        <section class="section">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-two-thirds-desktop">
+                        <div class="card">
+                            <div class="card-header">
+                                <h1 class="card-header-title">Summary</h1>
+                            </div>
+                            <div class="card-content">
+                                <div id="results">No article selected yet</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        <main>
-            <section>
-                <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="url" type="text" name="input" value="" onblur="Client.onBlur(this)" placeholder="Url">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            <section>
+        </section>
+    </main>
+    <div id="alert" class="hidden notification is-danger">
+        Whoops, that url couldn't be understood. Try a different one.
+    </div>
 
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
-        </main>
+</body>
+<script>
+    document.addEventListener('load', Client.onLoad());
+</script>
 
-        <footer>
-            <p>This is a footer</p>
-        </footer>
-
-    </body>
 </html>

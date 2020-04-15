@@ -26,6 +26,7 @@ module.exports = {
         new HtmlWebPackPlugin({
             template: "./src/client/views/index.html",
             filename: "./index.html",
+            title: 'Development'
         }),
         new CleanWebpackPlugin()
     ],
