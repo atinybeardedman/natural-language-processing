@@ -1,16 +1,39 @@
-export function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmit() {
+    const resultsElement = document.getElementById('results');
+    const alertElement = document.getElementById('alert');
+    const inputElement = document.getElementById('url');
+    const url = inputElement.value;
 
-
-    // check what text was put into the form field
-    const url = document.getElementById('url').value;
-    // TODO: add validation
-
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/summarize?url='+url)
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.sentences.join(' ');
-    })
+    inputElement.classList.add('is-loading');
+    return getSummary(url)
+        .then(res => {
+            if(!res.ok){
+                return showError(alertElement);
+            } else {
+                return res.json()
+                    .then(res => updateDOM(res, inputElement, resultsElement));
+            }
+        })
 }
 
+function updateDOM(res, inputElement, resultsElement) {
+    inputElement.remove('is-loading');
+    resultsElement.innerText = res.sentences.join(' ');
+}
+
+function getSummary(url){
+    return fetch('http://localhost:8080/summarize?url=' + url);
+}
+
+function showError(alertElement){
+    alertElement.classList.remove('hidden');
+    setTimeout(() => {
+        alertElement.classList.add('hidden')
+    }, 5000);
+}
+
+module.exports = {
+    handleSubmit,
+    updateDOM,
+    getSummary
+};
